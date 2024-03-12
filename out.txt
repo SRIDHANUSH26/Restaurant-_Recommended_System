@@ -1,0 +1,25 @@
+<option value="Vadavalli">Vadavalli</option>
+<option value="Vadivelampalayam">Vadivelampalayam</option>
+<option value="Kalampalayam">Kalampalayam</option>
+<option value="Siruvani">Siruvani</option>
+<option value="Iruttupallam">Iruttupallam</option>
+<option value="Alanthurai">Alanthurai</option>
+<option value="alandurai">alandurai</option>
+<option value="Karunyanagar">Karunyanagar</option>
+<option value="Alandurai">Alandurai</option>
+<option value="Pooluvapatti">Pooluvapatti</option>
+<option value="Boluvampatti">Boluvampatti</option>
+<option value="Nadhagounden Pudur">Nadhagounden Pudur</option>
+<option value="Madawarayapuram">Madawarayapuram</option>
+<option value="Vcv">Vcv</option>
+<option value="Thenkarai">Thenkarai</option>
+<option value="Karunya Nagar">Karunya Nagar</option>
+<option value="Vellimalaipattinam">Vellimalaipattinam</option>
+<option value="Semmedu">Semmedu</option>
+<option value="Thondamuthur">Thondamuthur</option>
+<option value="Narasipuram">Narasipuram</option>
+<option value="Mathampatti">Mathampatti</option>
+<option value="Madhampatti">Madhampatti</option>
+<option value="Booluvampatti">Booluvampatti</option>
+<option value="Viraliyur">Viraliyur</option>
+

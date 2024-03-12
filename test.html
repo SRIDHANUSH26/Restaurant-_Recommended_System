@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant List</title>
+
+
+  <style>
+    body {
+        /* background: "E:\project\test.jpg"; */
+        background-image: url('https://c0.wallpaperflare.com/preview/452/100/984/restaurant-bar-coffee-shop.jpg'); /* Replace 'your-image-url.jpg' with the path to your image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed
+    }
+    center {
+      font-size: 25px; 
+    }
+    button, select{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 10px;
+    }
+    #restaurantList{
+        color: white;
+    }
+
+    <style>
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  /* Add some padding inside the card container */
+  .container {
+    padding: 16px;
+  }
+
+  .card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0; /* Rounded corners for the top */
+  }
+
+  .card h4 {
+    margin: 10px 0 0;
+  }
+
+  .card p {
+    margin: 8px 0 0;
+  }
+  </style>
+</head>
+<body>
+
+<div>
+    <center>
+  <label for="hotelDropdown">Select Hotel:</label>
+  <select id="hotelDropdown">
+    <option value="Vadavalli">Vadavalli</option>
+    <option value="Vadivelampalayam">Vadivelampalayam</option>
+    <option value="Kalampalayam">Kalampalayam</option>
+    <option value="Siruvani">Siruvani</option>
+    <option value="Iruttupallam">Iruttupallam</option>
+    <option value="Alanthurai">Alanthurai</option>
+    <option value="alandurai">alandurai</option>
+    <option value="Karunyanagar">Karunyanagar</option>
+    <option value="Alandurai">Alandurai</option>
+    <option value="Pooluvapatti">Pooluvapatti</option>
+    <option value="Boluvampatti">Boluvampatti</option>
+    <option value="Nadhagounden Pudur">Nadhagounden Pudur</option>
+    <option value="Madawarayapuram">Madawarayapuram</option>
+    <option value="Vcv">Vcv</option>
+    <option value="Thenkarai">Thenkarai</option>
+    <option value="Karunya Nagar">Karunya Nagar</option>
+    <option value="Vellimalaipattinam">Vellimalaipattinam</option>
+    <option value="Semmedu">Semmedu</option>
+    <option value="Thondamuthur">Thondamuthur</option>
+    <option value="Narasipuram">Narasipuram</option>
+    <option value="Mathampatti">Mathampatti</option>
+    <option value="Madhampatti">Madhampatti</option>
+    <option value="Booluvampatti">Booluvampatti</option>
+    <option value="Viraliyur">Viraliyur</option>
+    
+    
+    <!-- Add more options as needed -->
+  </select>
+  <button onclick="fetchData()">Fetch Data</button>
+</div>
+</center>
+<div id="restaurantList"></div>
+
+<script>
+  const fetchData = async () => {
+    try {
+      const hotelDropdown = document.getElementById('hotelDropdown');
+      const restaurantListElement = document.getElementById('restaurantList');
+
+      const response = await fetch('http://localhost:8000/rec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ hotel: hotelDropdown.value }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      renderRestaurantList(data);
+    } catch (error) {
+      console.error('Error fetching restaurant data:', error);
+    }
+  };
+
+  // Function to render restaurant list
+  const renderRestaurantList = (restaurantData) => {
+    const restaurantListElement = document.getElementById('restaurantList');
+    restaurantListElement.innerHTML = '';
+
+    Object.entries(restaurantData).forEach(([restaurantName, imageBase64]) => {
+      const restaurantCard = document.createElement('div');
+      restaurantCard.style.margin = '20px';
+      restaurantCard.style.padding = '10px';
+      restaurantCard.style.border = '1px solid #ccc';
+      restaurantCard.style.borderRadius = '8px';
+      restaurantCard.style.textAlign = 'center';
+
+      const restaurantNameHeader = document.createElement('h2');
+      restaurantNameHeader.textContent = restaurantName;
+
+      const restaurantImage = document.createElement('img');
+      restaurantImage.src = imageBase64;
+      restaurantImage.alt = restaurantName;
+      restaurantImage.style.maxWidth = '100%';
+      restaurantImage.style.maxHeight = '200px';
+      restaurantImage.style.objectFit = 'cover';
+      restaurantImage.style.borderRadius = '8px';
+
+      restaurantCard.appendChild(restaurantNameHeader);
+      restaurantCard.appendChild(restaurantImage);
+
+      restaurantListElement.appendChild(restaurantCard);
+    });
+  };
+</script>
+
+</body>
+</html>
